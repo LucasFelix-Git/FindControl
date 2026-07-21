@@ -1,5 +1,4 @@
-from repositories.usuario_repository import criar_usuario, buscar_usuario_por_nome, buscar_usuario_por_id
-from models.usuario import Usuario
+from repositories.usuario_repository import criar_usuario, buscar_usuario_por_nome
 
 def autenticar_usuario (nome_usuario: str, senha: str):
     
