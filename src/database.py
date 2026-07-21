@@ -12,3 +12,21 @@ def initialize_database():
     cursor.executescript(schema)
     connection.commit()
     connection.close()
+
+def initialize_categories():
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute("""
+        INSERT OR IGNORE INTO categoria (nome_categoria)
+        VALUES
+        ("Alimentação"),
+        ("Transporte"),
+        ("Moradia"),
+        ("Saúde"),
+        ("Educação"),
+        ("Lazer"),
+        ("Salário"),
+        ("Investimentos")
+""")
+    connection.commit()
+    connection.close()
