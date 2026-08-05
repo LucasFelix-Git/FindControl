@@ -1,4 +1,6 @@
 from services.usuario_service import autenticar_usuario, cadastrar_usuario
+from services.categoria_service import cadastrar_categoria, buscar_categoria_por_id, listar_categoria
+from services.receita_service import cadastrar_receita, listar_receita
 from models.usuario import Usuario
 
 
@@ -67,7 +69,30 @@ def menu_usuario(usuario: Usuario):
         number = int(input("Escolha uma opção: "))
     
         if number == 1:
-            print("Entrou em Adicionar Receita")
+            descricao = input("Digite uma Descrição: ")
+            valor = float(input("Digite o Valor: "))
+
+            mostrar_categorias()
+            
+            id_categoria = int(input("Escolha uma categoria: "))
+
+            if id_categoria == 0:
+                nova_categoria = input("Nome da nova Categoria: ")
+                sucesso = cadastrar_categoria(nova_categoria)
+                if sucesso == True:
+                    print("categoria criada com sucesso")
+                    mostrar_categorias()
+                else:
+                    print("Categoria existente ou menos de 3 caracteres")
+
+            receita = cadastrar_receita(descricao, valor, usuario.id_usuario, id_categoria)
+
+            if receita == False:
+                print("Não foi possivel registar a receita, verifique suas informações novamente")
+            else:
+                print("✔ Receita criada com sucesso!")
+
+
         
         elif number == 2:
             print("Entrou em Adicionar Despesas")
@@ -85,4 +110,12 @@ def menu_usuario(usuario: Usuario):
         else:
             print("Opção invalida")
 
+def mostrar_categorias():
+    categorias = listar_categoria()
+
+    for categoria in categorias:
+        print(f"{categoria.id_categoria} - {categoria.nome_categoria}")
+
+    print("0 - Criar Categoria")
+    
 menu_principal()
