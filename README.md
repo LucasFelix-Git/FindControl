@@ -1,39 +1,77 @@
 <h1 align="center">FinControl</h1>
-<p align="center"><strong>Sistema de gerenciamento financeiro desenvolvido em Python.</strong></p>
+<p align="center"><strong>Sistema de gerenciamento financeiro em Python — 🚧 em desenvolvimento ativo</strong></p>
 
+> **Status:** este projeto está em construção. Login, cadastro de receitas e categorias já funcionam; despesas, saldo e histórico ainda estão sendo implementados. Veja a seção [Funcionalidades](#-funcionalidades) para o status detalhado de cada parte.
 
-## Descrição
-Este é um projeto open source que visa ajudar o usuario ou empresa a fazer um controle financeiro facil e rapido, podendo ter controle das despesas e receitas.
+## 📋 Descrição
 
-Essa e a versão 1.0 do FinControl, tendo como objetivo a evolução constante do projeto ao longo do tempo, tendo controle total de todas as versões ja criadas.
+Projeto open source para ajudar uma pessoa ou pequena empresa a controlar receitas e despesas de forma simples, via terminal, com persistência em banco de dados SQLite.
 
-## Funcionalidades
+Arquitetura em camadas (`models` → `repositories` → `services` → `ui`), separando regra de negócio, acesso a dados e interface — meta do projeto é evoluir de forma organizada, e não só "fazer funcionar".
 
-- Cadastro de receitas
-- Cadastro de despesas
-- Saldo financeiro
+## ✨ Funcionalidades
 
-## Tecnologias
+**Implementado:**
+- ✅ Cadastro e login de usuário
+- ✅ Cadastro de receitas, com categoria (inclusive criando categorias novas na hora)
+- ✅ Categorias padrão pré-cadastradas (Alimentação, Transporte, Moradia, Saúde, Educação, Lazer, Salário, Investimentos)
 
+**Em desenvolvimento:**
+- 🚧 Cadastro de despesas (schema do banco já pronto, lógica em construção)
+- 🚧 Cálculo de saldo
+- 🚧 Histórico de movimentações
+- 🚧 Relatórios
+- 🚧 Dashboard
+
+## 🗂️ Arquitetura
+
+```
+src/
+├── main.py              # ponto de entrada
+├── database.py          # conexão e inicialização do SQLite
+├── models/               # entidades (Usuario, Receita, Categoria)
+├── repositories/         # acesso direto ao banco (SQL)
+├── services/              # regras de negócio
+├── dto/                    # objetos de transferência de dados
+└── ui/                      # menu de linha de comando
+```
+
+## 🛠️ Tecnologias
 
 [![My Skills](https://skillicons.dev/icons?i=py,sqlite,git)](https://skillicons.dev)
 
-## Roadmap
+Python 3 puro + SQLite3 (biblioteca padrão) — sem dependências externas.
 
-- [ ] Cadastro de receitas
+## 🗄️ Modelo de dados
 
+![Modelo Relacional](img/MRv1.png)
+
+Ver detalhes em [`docs/database.md`](docs/database.md).
+
+## ▶️ Como rodar
+
+```bash
+git clone https://github.com/LucasFelix-Git/FindControl.git
+cd FindControl
+python src/main.py
+```
+
+Execute a partir da raiz do projeto (o banco é criado automaticamente em `database/fincontrol.db` na primeira execução).
+
+## 🚧 Roadmap
+
+- [x] Cadastro e login de usuário
+- [x] Cadastro de receitas
 - [ ] Cadastro de despesas
-
 - [ ] Saldo
-
-- [ ] Categorias
-
+- [ ] Categorias personalizáveis pelo usuário
 - [ ] Relatórios
-
 - [ ] Dashboard
 
-## License
+## 📄 Licença
 
-Este projeto está disponível sob as seguintes licenças:
+Este projeto está disponível sob a licença [MIT](LICENSE).
 
-- [MIT](https://rem.mit-license.org)
+## 👤 Autor
+
+**Lucas Felix** — [GitHub](https://github.com/LucasFelix-Git)
